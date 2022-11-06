@@ -9,4 +9,5 @@ class BowlingGame {
 	int calculateScore(String input) {
 		return stream(input.split(noScore)).mapToInt(Integer::parseInt).sum();
 	}
+
 }
