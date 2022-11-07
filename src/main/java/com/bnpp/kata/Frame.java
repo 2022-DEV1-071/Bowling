@@ -5,20 +5,15 @@ import static java.lang.Integer.parseInt;
 public class Frame {
 	public static final String SPARE_SIGNAL = "/";
 	public static final String STRIKE_SIGNAL = "X";
+	static final String noScore = "";
 	private String first;
 	private String second;
 	private boolean bonusScore;
+	private String upComingRecords;
 
 	public Frame(String first, String second) {
 		this.first = first;
 		this.second = second;
-	}
-
-	public int calculateScore() {
-		if (isSpare()) {
-			return 10;
-		}
-		return parseInt(first) + parseInt(second);
 	}
 
 	public boolean isSpare() {
@@ -39,6 +34,30 @@ public class Frame {
 
 	boolean isStrike() {
 		return STRIKE_SIGNAL.equals(first);
+	}
+
+	void setUpComingRecords(String upComingRecords) {
+		this.upComingRecords = upComingRecords;
+	}
+
+	int getBonus() {
+		String[] bonuses = upComingRecords.split(noScore);
+		int totalBonus = 0;
+		for (String bonusScore : bonuses) {
+			switch (bonusScore) {
+			case "X":
+				totalBonus += 10;
+				break;
+			case "/":
+				return 10;
+			case "-":
+				totalBonus += 0;
+				break;
+			default:
+				totalBonus += parseInt(bonusScore);
+			}
+		}
+		return totalBonus;
 	}
 
 }

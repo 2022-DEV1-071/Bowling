@@ -43,7 +43,7 @@ public class BowlingGameTest {
 	}
 
 	@Test
-	public void oneStrikeInLastFrame() {
+	public void oneStrikeInLastFrame() throws Exception {
 		int score = bowlingGame.getScore("123451234512345123X53");
 
 		assertThat(score, is(69));

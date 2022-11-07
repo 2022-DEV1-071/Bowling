@@ -34,21 +34,10 @@ class BowlingGame {
 	      return frame.calculateScore();
 	}
 }
-	
+
 	int getScore(String inputData) {
-	    String[] records = inputData.split(noScore);
-	    return calculateTotalScore(createFrame(records));
-	  }
-
-
-	private Frame createFrame(String[] records, int indexScore) {
-		String firstRecord = records[indexScore++];
-		String secondRecord = noScore;
-		if (records.length > indexScore) {
-			secondRecord = records[indexScore];
-		}
-		Frame frame = new Frame(firstRecord, secondRecord);
-		frame.setBonusScore(true);
-		return frame;
+		String[] records = inputData.split(noScore);
+		return calculateTotalScore(createFrame(records));
 	}
+
 }
