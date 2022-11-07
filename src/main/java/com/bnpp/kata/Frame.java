@@ -6,6 +6,7 @@ public class Frame {
 	public static final String SPARE_SIGNAL = "/";
 	public static final String STRIKE_SIGNAL = "X";
 	static final String noScore = "";
+
 	private String first;
 	private String second;
 	private boolean bonusScore;
@@ -58,6 +59,18 @@ public class Frame {
 			}
 		}
 		return totalBonus;
+	}
+
+	int calculateScore() {
+		return isSpare() || isStrike() ? 10 : getFirstScore() + getSecondScore();
+	}
+
+	public void setFirst(String first) {
+		this.first = first;
+	}
+
+	public void setSecond(String second) {
+		this.second = second;
 	}
 
 }

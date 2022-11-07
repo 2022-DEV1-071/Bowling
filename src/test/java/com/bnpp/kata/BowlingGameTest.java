@@ -43,10 +43,17 @@ public class BowlingGameTest {
 	}
 
 	@Test
-	public void oneStrikeInLastFrame() throws Exception {
+	public void oneStrikeInLastFrame() {
 		int score = bowlingGame.getScore("123451234512345123X53");
 
 		assertThat(score, is(69));
+	}
+
+	@Test
+	public void allStrikes() {
+		int score = bowlingGame.getScore("XXXXXXXXXXXX");
+
+		assertThat(score, is(300));
 	}
 
 }
