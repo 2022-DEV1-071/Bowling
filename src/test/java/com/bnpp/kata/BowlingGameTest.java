@@ -50,11 +50,17 @@ public class BowlingGameTest {
 	}
 
 	@Test
-    public void allSpares() {
-    int score = bowlingGame.getScore("5/5/5/5/5/5/5/5/5/5/5");
+	public void allSpares() {
+		int score = bowlingGame.getScore("5/5/5/5/5/5/5/5/5/5/5");
 
-    assertThat(score, is(150));
-  }
+		assertThat(score, is(150));
+	}
 
+	@Test
+	public void ninePinsDownEachRound() {
+		int score = bowlingGame.getScore("9-9-9-9-9-9-9-9-9-9-");
+
+		assertThat(score, is(90));
+	}
 
 }
