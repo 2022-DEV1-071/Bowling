@@ -50,10 +50,11 @@ public class BowlingGameTest {
 	}
 
 	@Test
-	public void allStrikes() {
-		int score = bowlingGame.getScore("XXXXXXXXXXXX");
+    public void allSpares() {
+    int score = bowlingGame.getScore("5/5/5/5/5/5/5/5/5/5/5");
 
-		assertThat(score, is(300));
-	}
+    assertThat(score, is(150));
+  }
+
 
 }
