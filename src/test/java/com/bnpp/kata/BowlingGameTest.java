@@ -63,4 +63,11 @@ public class BowlingGameTest {
 		assertThat(score, is(90));
 	}
 
+	@Test
+	public void allStrikes() {
+		int score = bowlingGame.getScore("XXXXXXXXXXXX");
+
+		assertThat(score, is(300));
+	}
+
 }

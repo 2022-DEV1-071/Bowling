@@ -65,6 +65,7 @@ public class Frame {
 	int calculateScore() {
 		return isSpare() || isStrike() ? 10 : getFirstScore() + getSecondScore();
 	}
+
 	private int getSecondScore() {
 		return noScore.equals(second) || LINE.equals(second) ? 0 : parseInt(second);
 	}
@@ -77,4 +78,11 @@ public class Frame {
 		this.second = second;
 	}
 
+	boolean isStrike() {
+		return STRIKE_SIGNAL.equals(first);
+	}
+
+	boolean isSpare() {
+		return SPARE_SIGNAL.equals(second);
+	}
 }
