@@ -3,39 +3,50 @@ package com.bnpp.kata;
 import static java.lang.Integer.parseInt;
 
 public class Frame {
-	public static final String SPARE_SIGNAL = "/";
-	public static final String STRIKE_SIGNAL = "X";
+	static final String STRIKE_SIGNAL = "X";
+	static final String SPARE_SIGNAL = "/";
 	static final String noScore = "";
 	static final String LINE = "-";
-
 	private String first;
 	private String second;
-	private boolean bonusScore;
+	private boolean bonus;
 	private String upComingRecords;
 
-	public Frame(String first, String second) {
+	Frame(String first, String second) {
 		this.first = first;
 		this.second = second;
 	}
 
-	public boolean isSpare() {
-		return SPARE_SIGNAL.endsWith(second);
+	Frame() {
+
 	}
 
-	public int getFirstScore() {
-		return parseInt(first);
+	int calculateScore() {
+		return isSpare() || isStrike() ? 10 : getFirstScore() + getSecondScore();
 	}
 
-	void setBonusScore(boolean bonusScore) {
-		this.bonusScore = bonusScore;
-	}
-
-	boolean isBonusScore() {
-		return bonusScore;
+	private int getSecondScore() {
+		return noScore.equals(second) || LINE.equals(second) ? 0 : parseInt(second);
 	}
 
 	boolean isStrike() {
 		return STRIKE_SIGNAL.equals(first);
+	}
+
+	boolean isSpare() {
+		return SPARE_SIGNAL.equals(second);
+	}
+
+	int getFirstScore() {
+		return noScore.equals(first) || LINE.equals(first) ? 0 : parseInt(first);
+	}
+
+	void setBonus(boolean bonus) {
+		this.bonus = bonus;
+	}
+
+	boolean isBonus() {
+		return bonus;
 	}
 
 	void setUpComingRecords(String upComingRecords) {
@@ -62,14 +73,6 @@ public class Frame {
 		return totalBonus;
 	}
 
-	int calculateScore() {
-		return isSpare() || isStrike() ? 10 : getFirstScore() + getSecondScore();
-	}
-
-	private int getSecondScore() {
-		return noScore.equals(second) || LINE.equals(second) ? 0 : parseInt(second);
-	}
-
 	public void setFirst(String first) {
 		this.first = first;
 	}
@@ -78,11 +81,4 @@ public class Frame {
 		this.second = second;
 	}
 
-	boolean isStrike() {
-		return STRIKE_SIGNAL.equals(first);
-	}
-
-	boolean isSpare() {
-		return SPARE_SIGNAL.equals(second);
-	}
 }

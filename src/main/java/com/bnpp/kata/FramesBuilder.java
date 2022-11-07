@@ -26,39 +26,37 @@ class FramesBuilder {
 		return frames;
 	}
 
-	private Frame buildFrame(String[] records, int indexScore) {
-		Frame frame = new Frame();
-		frame.setFirst(records[indexScore]);
-		frame.setBonusScore(false);
-		if (!isStrike(records[indexScore])) {
-			frame.setSecond(records[indexScore + 1]);
-		} else {
-			frame.setUpComingRecords(records[indexScore + 1] + records[indexScore + 2]);
-		}
-		if (frame.isSpare()) {
-			frame.setUpComingRecords(records[indexScore + 2]);
-		}
-		return frame;
-	}
-
 	private Frame createBonusFrame(String[] records, int index) {
 		String firstRecord = records[index++];
 		String secondRecord = noScore;
 		if (records.length > index) {
 			secondRecord = records[index];
 		}
-		return createFrame(firstRecord, secondRecord, true);
-	}
-
-	private Frame createFrame(String[] records, int indexScore) {
-		String firstRecord = records[indexScore++];
-		String secondRecord = noScore;
-		if (records.length > indexScore) {
-			secondRecord = records[indexScore];
-		}
 		Frame frame = new Frame(firstRecord, secondRecord);
-		frame.setBonusScore(true);
+		frame.setBonus(true);
 		return frame;
 	}
 
+	private Frame buildFrame(String[] records, int index) {
+		Frame frame = new Frame();
+		frame.setFirst(records[index]);
+		frame.setBonus(false);
+		if (!isStrike(records[index])) {
+			frame.setSecond(records[index + 1]);
+		} else {
+			frame.setUpComingRecords(records[index + 1] + records[index + 2]);
+		}
+		if (frame.isSpare()) {
+			frame.setUpComingRecords(records[index + 2]);
+		}
+		return frame;
+	}
+
+	private boolean isStrike(String record) {
+		return STRIKE_SIGNAL.equals(record);
+	}
+
+	private boolean hasBonus(int index, int length) {
+		return length > index;
+	}
 }
