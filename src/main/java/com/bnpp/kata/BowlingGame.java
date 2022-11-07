@@ -12,19 +12,18 @@ class BowlingGame {
 		return stream(input.split(noScore)).mapToInt(Integer::parseInt).sum();
 		String[] records = input.split(noScore);
 		List<Frame> frames = new ArrayList<>();
-		for (int index1 = 0; index1 < records.length;) {
-			frames.add(new Frame(records[index1++], records[index1++]));
+		for (int indexScore1 = 0; indexScore1 < records.length;) {
+			frames.add(new Frame(records[indexScore1++], records[indexScore1++]));
 		}
 		int totalScore = 0;
-		for (int index = 0; index < frames.size(); index++) {
-			Frame frame = frames.get(index);
+		for (int indexScore = 0; indexScore < frames.size(); indexScore++) {
+			Frame frame = frames.get(indexScore);
 			totalScore += frame.calculateScore();
 			if (frame.isSpare()) {
-				Frame nextFrame = frames.get(index + 1);
+				Frame nextFrame = frames.get(indexScore + 1);
 				totalScore += nextFrame.getFirstScore();
 			}
 		}
 		return totalScore;
 	}
-
 }
