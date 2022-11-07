@@ -34,7 +34,13 @@ class BowlingGame {
 	      return frame.calculateScore();
 	}
 }
-		
+	
+	int getScore(String inputData) {
+	    String[] records = inputData.split(noScore);
+	    return calculateTotalScore(createFrame(records));
+	  }
+
+
 	private Frame createFrame(String[] records, int indexScore) {
 		String firstRecord = records[indexScore++];
 		String secondRecord = noScore;
