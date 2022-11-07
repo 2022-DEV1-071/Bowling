@@ -3,7 +3,8 @@ package com.bnpp.kata;
 import static java.lang.Integer.parseInt;
 
 public class Frame {
-	private static final String SPARE_SIGNAL = "/";
+	public static final String SPARE_SIGNAL = "/";
+	public static final String STRIKE_SIGNAL = "X";
 	private String first;
 	private String second;
 	private boolean bonusScore;
@@ -34,6 +35,10 @@ public class Frame {
 
 	boolean isBonusScore() {
 		return bonusScore;
+	}
+
+	boolean isStrike() {
+		return STRIKE_SIGNAL.equals(first);
 	}
 
 }

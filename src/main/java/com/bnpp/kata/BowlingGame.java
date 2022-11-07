@@ -3,6 +3,7 @@ package com.bnpp.kata;
 import static java.util.Arrays.stream;
 import java.util.ArrayList;
 import java.util.List;
+import static com.bnpp.kata.Frame.STRIKE_SIGNAL;
 
 class BowlingGame {
 
@@ -10,7 +11,7 @@ class BowlingGame {
 
 	int calculateScore(String inputData) {
 	    String[] records = inputData.split(noScore);
-	private List<Frame> buildFrames(String[] records) {
+	private List<Frame> createFrame(String[] records) {
 	    List<Frame> frames = new ArrayList<>();
 	    int indexScore = 0;
 	    for (indexScore=0; indexScore<records.length - 1; indexScore++ ) {
@@ -24,8 +25,24 @@ class BowlingGame {
 	    if (hasBonus(indexScore, records.length)) {
 	      frames.add(createFrame(records[indexScore], ZERO, true));
 	    }
-	    return frames;
+	    return frame;
 	  }
+	    if (frame.isStrike()) {
+	        Frame nextFrame = frames.get(index + 1);
+	        return frame.calculateScore() + nextFrame.getFirstScore() + nextFrame.getSecondScore();
+	      }
+	      return frame.calculateScore();
+	}
 }
-}
+		
+	private Frame createFrame(String[] records, int indexScore) {
+		String firstRecord = records[indexScore++];
+		String secondRecord = noScore;
+		if (records.length > indexScore) {
+			secondRecord = records[indexScore];
+		}
+		Frame frame = new Frame(firstRecord, secondRecord);
+		frame.setBonusScore(true);
+		return frame;
+	}
 }
