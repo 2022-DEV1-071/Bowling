@@ -6,6 +6,7 @@ public class Frame {
 	private static final String SPARE_SIGNAL = "/";
 	private String first;
 	private String second;
+	private boolean bonusScore;
 
 	public Frame(String first, String second) {
 		this.first = first;
@@ -25,6 +26,14 @@ public class Frame {
 
 	public int getFirstScore() {
 		return parseInt(first);
+	}
+
+	void setBonusScore(boolean bonusScore) {
+		this.bonusScore = bonusScore;
+	}
+
+	boolean isBonusScore() {
+		return bonusScore;
 	}
 
 }
