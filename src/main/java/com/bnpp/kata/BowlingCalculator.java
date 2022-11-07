@@ -14,6 +14,15 @@ public class BowlingCalculator {
 
 	private int calculateEachFrame(List<Frame> frames, int indexScore) {
 		Frame frame = frames.get(indexScore);
+		if (frame.isBonus()) {
+			return 0;
+		}
+		if (frame.isSpare()) {
+			return frame.calculateScore() + frame.getBonus();
+		}
+		if (frame.isStrike()) {
+			return frame.calculateScore() + frame.getBonus();
+		}
 		return frame.calculateScore();
 	}
 }

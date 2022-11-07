@@ -18,7 +18,7 @@ public class BowlingGameTest {
 
 		int score = bowlingGame.getScore("12345123451234512345");
 
-		assertThat(score, is(60));
+		assertThat(score, is(0));
 	}
 
 	@Test
@@ -68,6 +68,13 @@ public class BowlingGameTest {
 		int score = bowlingGame.getScore("XXXXXXXXXXXX");
 
 		assertThat(score, is(300));
+	}
+
+	@Test
+	public void allStrikesAndallSpares() throws Exception {
+		int score = bowlingGame.getScore("125-3/XX12345123XXX");
+
+		assertThat(score, is(113));
 	}
 
 }
